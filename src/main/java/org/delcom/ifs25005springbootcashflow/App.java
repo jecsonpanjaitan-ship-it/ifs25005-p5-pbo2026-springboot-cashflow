@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @StyleSheet(Lumo.STYLESHEET)
 @StyleSheet("styles.css")
-@JavaScript("a11y.js")
+@JavaScript("./a11y.js")
 @PWA(name = "Cashflow", shortName = "Cashflow", iconPath = "icons/icon.png")
 @Meta(name = "description", content = "Cashflow: aplikasi pencatat pemasukan dan pengeluaran pribadi beserta saldo dan bukti transaksi.")
 @Meta(name = "theme-color", content = "#2563EB")

@@ -98,6 +98,6 @@ pipeline {
     post {
         success { echo 'Pipeline selesai: build, test, scan, package, publish, deploy.' }
         failure { echo 'Pipeline gagal. Periksa log stage yang merah.' }
-        always  { cleanWs() }
+        always  { deleteDir() }
     }
 }

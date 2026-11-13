@@ -1,0 +1,380 @@
+/* ===== Tema dasar: warna primer #2563EB ===== */
+html {
+  --app-primary: #2563EB;
+  --app-primary-dark: #1D4ED8;
+  --app-income: #15803D;
+  --app-expense: #B91C1C;
+  --app-surface: #F3F4F6;
+  --app-text-muted: #4B5563;
+  --lumo-primary-color: #2563EB;
+  --lumo-primary-text-color: #1D4ED8;
+  --lumo-primary-color-50pct: rgba(37, 99, 235, 0.5);
+  --lumo-primary-color-10pct: rgba(37, 99, 235, 0.1);
+  --lumo-primary-contrast-color: #FFFFFF;
+}
+
+body {
+  background: #F9FAFB;
+}
+
+/* ===== Hover pointer pada seluruh kontrol interaktif ===== */
+vaadin-button,
+vaadin-menu-bar-button,
+vaadin-menu-bar-item,
+vaadin-context-menu-item,
+vaadin-tab,
+vaadin-tabs,
+vaadin-drawer-toggle,
+vaadin-upload-button,
+vaadin-upload,
+vaadin-side-nav-item,
+vaadin-side-nav-item::part(item),
+vaadin-grid-sorter,
+vaadin-grid-cell-content[role="columnheader"],
+vaadin-select,
+vaadin-checkbox,
+a,
+a[router-link],
+.auth-link {
+  cursor: pointer;
+}
+
+vaadin-button[disabled],
+vaadin-menu-bar-button[disabled],
+vaadin-menu-bar-item[disabled],
+vaadin-context-menu-item[disabled],
+vaadin-tab[disabled],
+vaadin-upload-button[disabled],
+vaadin-upload[disabled] {
+  cursor: not-allowed;
+}
+
+/* ===== Tombol berwarna dengan kontras memadai ===== */
+vaadin-button.btn-income[theme~="primary"] {
+  background-color: var(--app-income) !important;
+  color: #FFFFFF !important;
+}
+
+vaadin-button.btn-expense[theme~="primary"] {
+  background-color: var(--app-expense) !important;
+  color: #FFFFFF !important;
+}
+
+vaadin-button.btn-income[theme~="primary"][disabled],
+vaadin-button.btn-expense[theme~="primary"][disabled] {
+  opacity: 0.6;
+}
+
+/* ===== Layout & kartu ===== */
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--app-primary-dark);
+  margin-inline: var(--lumo-space-s, 0.5rem);
+}
+
+.user-menu-holder {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline-end: 1rem;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.sidebar {
+  padding: 0.75rem;
+}
+
+.page {
+  max-width: 1200px;
+  margin-inline: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #111827;
+}
+
+.page-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-card {
+  max-width: 560px;
+}
+
+.muted {
+  color: var(--app-text-muted);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--app-text-muted);
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+/* ===== Halaman login / register ===== */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #DBEAFE 0%, #F9FAFB 60%);
+}
+
+.auth-card {
+  max-width: 420px;
+  padding: 1.5rem;
+}
+
+.auth-title {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #111827;
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--app-text-muted);
+}
+
+.auth-link {
+  align-self: center;
+  color: var(--app-primary-dark);
+  font-weight: 500;
+}
+
+/* ===== Kartu ringkasan ===== */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.summary-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-left-width: 6px;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-card.neutral { border-left-color: #6B7280; }
+.summary-card.income { border-left-color: var(--app-income); }
+.summary-card.expense { border-left-color: var(--app-expense); }
+.summary-card.balance { border-left-color: var(--app-primary); }
+
+.summary-label {
+  color: var(--app-text-muted);
+  font-size: 0.875rem;
+}
+
+.summary-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.summary-card.income .summary-value { color: var(--app-income); }
+.summary-card.expense .summary-value { color: var(--app-expense); }
+.summary-card.balance .summary-value { color: var(--app-primary-dark); }
+
+/* ===== Toolbar & grid ===== */
+.toolbar {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.toolbar-search {
+  flex: 1 1 240px;
+}
+
+.app-grid {
+  width: 100%;
+}
+
+.amount-income {
+  color: var(--app-income);
+  font-weight: 600;
+}
+
+.amount-expense {
+  color: var(--app-expense);
+  font-weight: 600;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.type-badge.income { background: #DCFCE7; color: #14532D; }
+.type-badge.expense { background: #FEE2E2; color: #7F1D1D; }
+.type-badge.role-admin { background: #DBEAFE; color: #1E3A8A; }
+.type-badge.role-user { background: #E5E7EB; color: #1F2937; }
+
+.proof-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.user-cell-name {
+  font-weight: 500;
+}
+
+.confirm-row {
+  font-family: monospace;
+  background: var(--app-surface);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  word-break: break-word;
+}
+
+/* ===== Dialog modal: header primer, footer abu-abu, tombol di kanan ===== */
+.app-dialog-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.app-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #2563EB;
+  color: #FFFFFF;
+  padding: 0.9rem 1.25rem;
+}
+
+.app-dialog-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.app-dialog-badge {
+  background: #FFFFFF;
+  color: #1E3A8A;
+  border-radius: 999px;
+  padding: 0.1rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.app-dialog-body {
+  padding: 1rem 1.25rem;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.app-dialog-progress {
+  margin: 0;
+  width: 100%;
+}
+
+.app-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  background: #F3F4F6;
+  border-top: 1px solid #E5E7EB;
+  padding: 0.75rem 1.25rem;
+}
+
+/* ===== Pratinjau gambar (zoom) ===== */
+.preview-viewport {
+  max-height: 60vh;
+  overflow: auto;
+  text-align: center;
+  background: #F9FAFB;
+  border-radius: 8px;
+}
+
+.preview-image {
+  display: block;
+  max-width: none;
+  cursor: zoom-in;
+  transition: width 0.15s ease;
+  margin: 0 auto;
+}
+
+.preview-zoom-label {
+  margin-right: auto;
+  color: var(--app-text-muted);
+  font-size: 0.875rem;
+}
+
+/* ===== Indikator loading global (bar menyala di atas layar) ===== */
+.v-loading-indicator {
+  position: fixed;
+  z-index: 2147483647;
+  top: 0;
+  left: 0;
+  right: auto;
+  width: 50%;
+  height: 4px;
+  opacity: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #2563EB, #60A5FA);
+  box-shadow: 0 0 10px #2563EB, 0 0 5px #60A5FA;
+  animation: v-progress-start 1000ms 200ms both;
+}
+
+.v-loading-indicator[style*="none"] {
+  display: none !important;
+}
+
+.v-loading-indicator.second {
+  width: 90%;
+  animation: v-progress-delay 3.8s forwards;
+}
+
+.v-loading-indicator.third {
+  width: 96%;
+  animation: v-progress-delay 5s forwards;
+}
+
+@keyframes v-progress-start {
+  0% { width: 0; }
+  100% { width: 50%; }
+}
+
+@keyframes v-progress-delay {
+  0% { width: 50%; }
+  100% { width: 90%; }
+}
+
+@media (max-width: 600px) {
+  .user-name { display: none; }
+  .page-title { font-size: 1.4rem; }
+}

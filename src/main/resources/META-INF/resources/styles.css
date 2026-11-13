@@ -66,6 +66,16 @@ vaadin-button.btn-expense[theme~="primary"][disabled] {
 }
 
 /* ===== Layout & kartu ===== */
+.app-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.app-main {
+  display: block;
+}
+
 .brand-title {
   font-size: 1.25rem;
   font-weight: 700;

@@ -9,6 +9,9 @@ import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.server.WrappedSession;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Menyimpan sesi login di VaadinSession + HTTP session + cookie (cashflow_uid).
@@ -34,6 +37,23 @@ public final class AuthSession {
             http.removeAttribute(LOGGED_OUT_KEY);
         }
         writeCookie(sign(user.getId()), COOKIE_MAX_AGE);
+    }
+
+    /**
+     * Login lewat request HTTP biasa (form POST native). Sesi lama dibuang agar status
+     * "logout" sebelumnya tidak terbawa, lalu id pengguna disimpan di sesi HTTP baru + cookie.
+     */
+    public static void loginHttp(HttpServletRequest request, HttpServletResponse response, User user) {
+        HttpSession old = request.getSession(false);
+        if (old != null) {
+            old.invalidate();
+        }
+        request.getSession(true).setAttribute(USER_KEY, user.getId());
+        Cookie cookie = new Cookie(COOKIE_NAME, sign(user.getId()));
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(COOKIE_MAX_AGE);
+        response.addCookie(cookie);
     }
 
     public static void logout() {

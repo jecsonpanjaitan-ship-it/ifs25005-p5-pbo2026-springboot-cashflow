@@ -3,11 +3,14 @@ package org.delcom.ifs25005springbootcashflow.framework.view;
 import org.delcom.ifs25005springbootcashflow.domain.entity.User;
 import org.delcom.ifs25005springbootcashflow.domain.repository.IUserRepository;
 import org.delcom.ifs25005springbootcashflow.framework.auth.AuthSession;
+import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
@@ -23,6 +26,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
     private final transient IUserRepository userRepository;
     private final Div sidebar = new Div();
     private final Div userMenuHolder = new Div();
+    private final Main main = new Main();
 
     public MainLayout(IUserRepository userRepository) {
         this.userRepository = userRepository;
@@ -33,10 +37,24 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         Span brand = new Span("Cashflow");
         brand.addClassName("brand-title");
         userMenuHolder.addClassName("user-menu-holder");
-        addToNavbar(toggle, brand, userMenuHolder);
+        // <header> = landmark banner; <main> = landmark utama (WCAG / axe "region" + "landmark-one-main")
+        Header header = new Header(toggle, brand, userMenuHolder);
+        header.addClassName("app-header");
+        addToNavbar(header);
+        main.addClassName("app-main");
+        setContent(main);
 
         sidebar.addClassName("sidebar");
         addToDrawer(sidebar);
+    }
+
+    /** Isi halaman dibungkus <main> agar menjadi landmark utama. */
+    @Override
+    public void showRouterLayoutContent(HasElement content) {
+        main.getElement().removeAllChildren();
+        if (content != null) {
+            main.getElement().appendChild(content.getElement());
+        }
     }
 
     @Override

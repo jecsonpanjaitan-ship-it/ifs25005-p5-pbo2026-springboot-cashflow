@@ -60,7 +60,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
     private void buildSidebar(User user) {
         SideNav nav = new SideNav();
-        nav.setAriaLabel("Navigasi utama");
+        nav.getElement().setAttribute("aria-label", "Navigasi utama");
         nav.addItem(new SideNavItem("Cashflow", FinanceView.class, VaadinIcon.WALLET.create()));
         nav.addItem(new SideNavItem("Profil", ProfileView.class, VaadinIcon.USER.create()));
         if (user.isAdmin()) {

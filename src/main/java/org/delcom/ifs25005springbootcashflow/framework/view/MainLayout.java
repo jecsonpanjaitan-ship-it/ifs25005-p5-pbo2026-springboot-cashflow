@@ -59,7 +59,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        User user = AuthSession.currentUser(userRepository);
+        User user = AuthSession.currentUser(userRepository).orElse(null);
         if (user == null) {
             event.forwardTo(LoginView.class);
             return;
@@ -70,7 +70,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
     /** Dipanggil setelah profil berubah agar nama/foto di navbar ikut diperbarui. */
     public void refreshUser() {
-        User user = AuthSession.currentUser(userRepository);
+        User user = AuthSession.currentUser(userRepository).orElse(null);;
         if (user != null) {
             buildUserMenu(user);
         }
